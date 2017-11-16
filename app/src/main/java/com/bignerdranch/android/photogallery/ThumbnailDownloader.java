@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -15,7 +16,7 @@ import java.util.concurrent.ConcurrentMap;
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 /**
- * Created by Dustin on 10/31/2017.
+ * Created by D on 10/31/2017.
  */
 
 public class ThumbnailDownloader<T> extends HandlerThread {
@@ -39,21 +40,19 @@ public class ThumbnailDownloader<T> extends HandlerThread {
                 thumbnail);
     }
     public void
-    setThumbnailDownloadListener(ThumbnailDownloadListener<T>
-                                         listener) {
-        mThumbnailDownloadListener = listener;
+    setThumbnailDownloadListener(ThumbnailDownloadListener<T> listener) {mThumbnailDownloadListener = listener;
     }
 
     public ThumbnailDownloader(Handler responseHandler) {
         super(TAG);
-        mResponseHandler = responseHandler;
+        this.mResponseHandler = responseHandler;
     }
 
     @Override
     protected void onLooperPrepared() {
         mRequestHandler = new Handler() {
             @Override
-            public void handleMessage(NotificationCompat.MessagingStyle.Message msg) {
+            public void handleMessage(Message msg) {
                 if (msg.what == MESSAGE_DOWNLOAD) {
                     T target = (T) msg.obj;
                     Log.i(TAG, "Got a request for URL: " + mRequestMap.get(target)); handleRequest(target);

@@ -1,7 +1,7 @@
 package com.bignerdranch.android.photogallery;
 
 /**
- * Created by Dustin on 10/31/2017.
+ * Created by D on 10/31/2017.
  */
 
 public class GalleryItem {

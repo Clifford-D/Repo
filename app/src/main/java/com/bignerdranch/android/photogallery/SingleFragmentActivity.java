@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.UUID;
 
 /**
- * Created by Dustin on 10/12/2017.
+ * Created by D on 10/12/2017.
  */
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
